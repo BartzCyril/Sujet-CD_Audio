@@ -72,6 +72,13 @@ describe('PostgreSQL Test Container', () => {
         });
     });
 
+    describe('POST /cds => Get status 500', () => {
+        it('should return status 500', async () => {
+            const response = await request(app).post('/api/cds').send({ title: 'CD', arqzdzqtist: 'Artist' });
+            expect(response.status).toBe(500);
+        });
+    });
+
     describe('DELETE /cds/:id', () => {
         it('should delete a CD', async () => {
             const result = await pool.query("INSERT INTO cds (title, artist, year) VALUES ('CD', 'Artist', 2025) RETURNING id");
@@ -81,4 +88,11 @@ describe('PostgreSQL Test Container', () => {
             expect(response.status).toBe(204);
         });
     });
+
+    describe('DELETE /cds/:id => Get status 500', () => {
+        it('should return status 500', async () => {
+            const response = await request(app).delete('/api/cds/qzdqzd');
+            expect(response.status).toBe(500);
+        });
+    })
 });
