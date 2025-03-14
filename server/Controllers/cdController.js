@@ -1,4 +1,10 @@
-const pool = require("../configs/db");
+let pool = require("../configs/db");
+
+const setPool = (newPool) => {
+  pool = newPool;
+};
+
+exports.setPool = setPool;
 
 // Récupérer tous les CD
 exports.getAllCDs = async (req, res) => {
