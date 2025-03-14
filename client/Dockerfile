@@ -1,4 +1,4 @@
-FROM node:lts-slim AS builder
+FROM node:lts-bullseye-slim AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
